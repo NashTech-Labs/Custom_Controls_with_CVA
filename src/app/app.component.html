@@ -1,0 +1,16 @@
+<div class="main">
+  <h1  class="heading mt-2 text-danger">Custom Controls with CVA</h1>
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
+      <ng-container *ngFor="let field of fields">
+        <app-custom
+          formControlName="{{ field.key }}"
+          [custom]="field"
+          [errorMsg]="contactForm.get(field.key).errors"
+        ></app-custom>
+      </ng-container>
+       <button mat-raised-button color="warn" style="margin-top: 20px" >
+       submit
+      </button>
+    </form>
+  <p>*CVA stands for controlValueAccessor</p>
+ </div>

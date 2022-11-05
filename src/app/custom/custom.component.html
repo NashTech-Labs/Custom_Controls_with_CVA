@@ -1,0 +1,39 @@
+
+
+<div class="container mt-1">
+  <ng-container [ngSwitch]="custom.fieldType">
+    <div class="form-field-label font-weight-bolder">{{custom.label }}</div>
+     <!-- for type text, email , number -->
+     <ng-container *ngSwitchCase="'input'">
+      <mat-form-field appearance="outline">
+        <input matInput [formControl]="inputField" [type]="custom.type" [placeholder]="custom.placeholder"
+       (input)=" doInput()" (blur)=" doBlur()" color="warn"/>
+      </mat-form-field>
+  </ng-container>
+</ng-container>
+
+
+  <!-- <mat-hint>Hint:{{ custom.hint }}</mat-hint> -->
+
+
+  <mat-error class="errormsg" *ngIf="inputField.invalid">
+    <span *ngIf="inputField.errors['required'] && inputField.touched">
+     {{ custom.label }} is required!
+    </span>
+    <span *ngIf="inputField.errors['email'] && inputField.touched">
+      Please enter valid {{ custom.label }}
+    </span>
+    <span *ngIf="inputField.errors['minlength'] && inputField.touched">
+      Minimum lenght should be {{ custom.validations[1].value }}</span
+    >
+    <span *ngIf="inputField.errors['maxlength']">
+      Maximum lenght should be {{ custom.validations[2].value }}</span
+    >
+    <span *ngIf="inputField.errors['min']">
+      Minimum value should be {{ custom.validations[1].value }}</span
+    >
+    <span *ngIf="inputField.errors['max']">
+      Maximum value should be {{ custom.validations[2].value }}</span
+    >
+  </mat-error>
+</div>
